@@ -1,10 +1,10 @@
 <?php
-require_once '../app/controllers/StudentController.php';
+$c = $_GET['c'] ?? 'book';
+$a = $_GET['a'] ?? 'index';
 
-$controller = new StudentController();
+$controllerName = ucfirst($c) . 'Controller';
+$path = "controllers/$controllerName.php";
 
-if (isset($_GET['api'])) {
-    $controller->api();
-} else {
-    $controller->index();
-}
+require_once $path;
+$controller = new $controllerName();
+$controller->$a();

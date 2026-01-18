@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Nếu request là file hoặc thư mục thật → không rewrite
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Mọi request khác → index.php
+RewriteRule ^ index.php [L]
